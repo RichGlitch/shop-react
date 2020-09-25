@@ -1,15 +1,17 @@
 import React from 'react'
-import CollectionPreview from '../../components/collection-preview/collection-preview.component';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
+import { Route } from 'react-router-dom';
+import CollectionPage from '../collection/collection.component';
 
-
-const ShopPage = () => (
-
-    <div>
-        <CollectionsOverview />
-    </div>
-)
-
+const ShopPage = ({ match }) => {
+    console.log(match);
+    return (
+        <div>
+            <div className='shop-page'>
+                <Route exact path={`${match.path}`} component={CollectionsOverview} />
+                <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+            </div>
+        </div>
+    )
+}
 export default ShopPage;
